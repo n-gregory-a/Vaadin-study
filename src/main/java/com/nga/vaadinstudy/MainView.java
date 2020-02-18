@@ -6,8 +6,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 
-import java.awt.*;
-
 @Route
 public class MainView extends VerticalLayout {
 
