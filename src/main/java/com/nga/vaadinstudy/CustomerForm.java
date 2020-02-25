@@ -23,6 +23,8 @@ public class CustomerForm extends FormLayout {
 
     private Binder<Customer> binder = new Binder<>(Customer.class);
 
+    private CustomerService service = CustomerService.getInstance();
+
     public CustomerForm(MainView mainView) {
 
         this.mainView = mainView;
@@ -34,6 +36,23 @@ public class CustomerForm extends FormLayout {
         add(firstName, lastName, status, birthDate, buttons);
 
         binder.bindInstanceFields(this);
+
+        save.addClickListener(event -> save());
+        delete.addClickListener(event -> delete());
+    }
+
+    private void delete() {
+        Customer customer = binder.getBean();
+        service.delete(customer);
+        mainView.updateList();
+        setCustomer(null);
+    }
+
+    private void save() {
+        Customer customer = binder.getBean();
+        service.save(customer);
+        mainView.updateList();
+        setCustomer(null);
     }
 
     public void setCustomer ( Customer customer) {
