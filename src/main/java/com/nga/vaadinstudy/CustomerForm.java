@@ -19,9 +19,13 @@ public class CustomerForm extends FormLayout {
     private Button save = new Button("Save");
     private Button delete = new Button("Delete");
 
+    private MainView mainView;
+
     private Binder<Customer> binder = new Binder<>(Customer.class);
 
-    public CustomerForm() {
+    public CustomerForm(MainView mainView) {
+
+        this.mainView = mainView;
 
         status.setItems(CustomerStatus.values());
 
