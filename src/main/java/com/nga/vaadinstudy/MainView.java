@@ -35,6 +35,9 @@ public class MainView extends VerticalLayout {
 
         updateList();
 
+        form.setCustomer(null);
+        grid.asSingleSelect().addValueChangeListener(event -> form.setCustomer(grid.asSingleSelect().getValue()));
+
     }
 
     public void updateList() {
