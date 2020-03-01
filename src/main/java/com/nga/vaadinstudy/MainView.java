@@ -1,5 +1,6 @@
 package com.nga.vaadinstudy;
 
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -23,13 +24,21 @@ public class MainView extends VerticalLayout {
         filterText.setValueChangeMode(ValueChangeMode.EAGER);
         filterText.addValueChangeListener(e -> updateList());
 
+        Button addCustomerBtn = new Button("Add new customer");
+        addCustomerBtn.addClickListener(event -> {
+            grid.asSingleSelect().clear();
+            form.setCustomer(new Customer());
+        });
+
+        HorizontalLayout toolbar = new HorizontalLayout(filterText, addCustomerBtn);
+
         grid.setColumns("firstName", "lastName", "status");
 
         HorizontalLayout mainContent = new HorizontalLayout(grid, form);
         mainContent.setSizeFull();
         grid.setSizeFull();
 
-        add(filterText, mainContent);
+        add(toolbar, mainContent);
 
         setSizeFull();
 
